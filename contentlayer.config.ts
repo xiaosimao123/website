@@ -13,7 +13,14 @@ export const Blog = defineDocumentType(() => ({
   contentType: 'mdx',
   fields: {
     title: { type: 'string', required: true },
- 
+    date: { type: 'string', required: true },
+    description: { type: 'string', required: true },
+    tags: {
+      type: 'list',
+      required: true,
+      of: { type: 'string' },
+      default: [],
+    },
   },
   computedFields: {
     slug: {
@@ -25,7 +32,6 @@ export const Blog = defineDocumentType(() => ({
 
 export default makeSource({
   contentDirPath: 'content',
-  // documentTypes: [Blog, Note, CP],
   documentTypes: [Blog],
   mdx: {
  

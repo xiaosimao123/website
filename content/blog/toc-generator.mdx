@@ -1,0 +1,36 @@
+---
+title: Next.js 정적 블로그에 TOC 목차 생성하기
+date: 2022-06-06
+description: InteractionObserver API로 TOC 구현하기
+tags: [next.js, next.js blog, blog, TOC, InteractionObserver, API, 정적 블로그]
+---
+
+## 내 블로그에 TOC(Table of Contents, 목차)를 추가하자.
+
+벨로그나 다른 개발 블로그를 보면 TOC 가 있는 것을 흔히 볼 수 있다. 직접 사용해 봤을 때 사용 만족도가 최상이었고, 노션을 사용할 때에도 fix된 TOC는 아니지만 긴 문서의 경우 꼭 추가하여 작성하는 편이다.
+
+그래서 블로그 기획 시점부터 TOC 만큼은 반드시 추가해야겠다는 생각이 있었다.
+
+### 어떻게 구현할 것인가?
+
+scroll 이벤트 리스너를 통해 구현할 수도 있겠지만, 스크롤 이벤트의 경우 짧은 시간 내에 수천 수백번의 이벤트가 동기적으로 실행되므로 성능 이슈가 있어 사용하지 않았다.
+
+대신, 이를 보완할 수 있는 InteractionObserver API 를 사용해 구현하기로 한다.
+
+### InteractionObserver API
+
+> Intersection Observer API는 타겟 요소와 상위 요소 또는 최상위 document 의 viewport 사이의 intersection 내의 변화를 비동기적으로 관찰하는 방법이다.
+
+IntersectionObserver는 비동기적으로 실행되기 때문에 스크롤 이벤트와 달리 렌더링 성능 이슈 없이 구현할 수 있다.
+
+### 구현 순서
+
+1. interection observer 생성 함수 작성
+2. 생성한 interection observer에 TOC에 표시될 header id 등록
+3. 스크롤에 따른 하이라이팅 처리
+
+## 참고 레퍼런스
+
+InteractionObserver 를 자세히 알고싶다면 아래 링크에서 상세하게 설명해주니 확인해보는 것을 추천한다.  
+[Intersection Observer - 요소의 가시성 관찰](https://heropy.blog/2019/10/27/intersection-observer/)  
+[React에서 Intersection Observer로 TOC 구현하기](https://se9round.dev/post/React%EC%97%90%EC%84%9C%20Intersection%20Observer%EB%A1%9C%20TOC%20%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0)
