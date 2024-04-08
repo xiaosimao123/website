@@ -7,6 +7,14 @@ const nextConfig = withContentlayer({
   env: {
     BASE_URL: process.env.BASE_URL,
   },
+  webpack: (config, options) => {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack'],
+    })
+
+    return config
+  },
 });
 
 module.exports = nextConfig;
