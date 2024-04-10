@@ -8,7 +8,9 @@ import SearchButton from './SearchButton'
 
 const MainNavigation = () => {
   return (
-    <header className="flex items-center justify-between py-10">
+    // <header className="flex items-center justify-between py-10">
+    <header className="fixed z-50 w-full bg-white border-b border-gray-200 bg-opacity-90 backdrop-blur backdrop-filter dark:border-gray-800 dark:bg-gray-950">
+       <div className="flex items-center justify-between w-full h-16 px-4 mx-auto max-w-screen-2xl md:px-8 lg:px-16"> 
       <div>
         <Link href="/" aria-label={siteMetadata.headerTitle}>
           <div className="flex items-center justify-between">
@@ -40,6 +42,7 @@ const MainNavigation = () => {
         <SearchButton />
         <ThemeSwitch />
         <MobileNav />
+      </div>
       </div>
     </header>
   )

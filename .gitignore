@@ -40,3 +40,7 @@ next-env.d.ts
 
 # auto generate
 public/search.json
+app/tag-data.json
+
+
+package-lock.json
