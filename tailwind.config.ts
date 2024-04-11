@@ -14,6 +14,9 @@ const config: Config = {
   darkMode: 'class',
   theme: {
     extend: {
+      screens: {
+        '1.5xl': '1440px',
+      },
       lineHeight: {
         11: '2.75rem',
         12: '3rem',
@@ -26,7 +29,7 @@ const config: Config = {
         mono: ['var(--font-geist-mono)'],
       },
       colors: {
-        primary: colors.blue,
+        primary: colors.violet,
         gray: colors.gray,
       },
       typography: ({ theme }) => ({

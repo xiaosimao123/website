@@ -19,6 +19,9 @@ import siteMetadata from '@/data/siteMetadata'
 import { notFound } from 'next/navigation'
 import { Mdx } from '@/components/mdx/mdx'
 import { TocNavigation } from '@/components/TocNavigation'
+import { DocsNavigation } from '@/components/docs/DocsNavigation'
+import { DocsHeader } from '@/components/docs/DocsHeader'
+import { BlogHeader } from '@/components/blog/BlogHeader'
 
 const defaultLayout = 'PostLayout'
 const layouts = {
@@ -119,27 +122,44 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
   // <TocNavigation headings={post.headings} />
   // </Layout>
   return (
-    <div className="relative w-full mx-auto max-w-screen-2xl lg:flex lg:items-start">
-      <div className="relative w-full grow">
-        <div className="prose max-w-none pb-8 pt-10 dark:prose-invert">
-          <Mdx code={post.body.code} />
-        </div>
-      </div>
-      <div  style={{ maxHeight: 'calc(100vh - 128px)' }}
-             className="sticky top-32  w-80 shrink-0 overflow-y-scroll p-8 pr-16 1.5xl:block">
-      <TocNavigation headings={post.headings} />
-      <div className="absolute inset-x-0 top-0 h-8 bg-gradient-to-t from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
-          <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-b from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
-      </div>
- 
-      {/* <div
-        style={{ maxHeight: 'calc(100vh - 128px)' }}
-        className="sticky top-32 hidden w-80 shrink-0 overflow-y-scroll p-8 pr-16 1.5xl:block"
-      >
-        <TocNavigation headings={post.headings} />
-        <div className="absolute inset-x-0 top-0 h-8 bg-gradient-to-t from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
-        <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-b from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
-      </div> */}
+
+    <div className="relative px-4 py-8 mx-auto max-w-screen-2xl md:px-8 md:py-16 lg:px-0">
+    <BlogHeader post={post} />
+    <div className="blog prose prose-lg prose-slate prose-violet relative mx-auto w-full max-w-full prose-headings:mt-16 prose-headings:font-semibold prose-a:font-normal prose-code:font-normal prose-code:before:content-none prose-code:after:content-none prose-hr:border-gray-200 dark:prose-invert dark:prose-a:text-violet-400 dark:prose-hr:border-gray-800 lg:max-w-[994px] lg:px-16">
+    <Mdx code={post.body.code} />
+      <hr />
+      {/* {post.authors.map((author, index) => (
+        <Author key={index} {...author} />
+      ))}
+      {post.related_posts && <RelatedPosts posts={post.related_posts} />} */}
     </div>
+  </div>
+
+
+    // <div className="relative w-full mx-auto max-w-screen-2xl lg:flex lg:items-start">
+    //   <div className="relative w-full grow">
+    //   <DocsHeader tree={[]} breadcrumbs={[]} title={"doc.title"} />
+    //     <div className="w-full max-w-3xl p-4 pb-8 mx-auto mb-4 prose docs prose-slate prose-violet shrink prose-headings:font-semibold prose-a:font-normal prose-code:font-normal prose-code:before:content-none prose-code:after:content-none prose-hr:border-gray-200 dark:prose-invert dark:prose-a:text-violet-400 dark:prose-hr:border-gray-800 md:mb-8 md:px-8 lg:mx-0 lg:max-w-full lg:px-16">
+    //       <Mdx code={post.body.code} />
+    //     </div>
+    //   </div>
+    //   <div
+    //     style={{ maxHeight: 'calc(100vh - 128px)' }}
+    //     className="sticky top-32  w-80 shrink-0 overflow-y-scroll p-8 pr-16 1.5xl:block"
+    //   >
+    //     <TocNavigation headings={post.headings} />
+    //     <div className="absolute inset-x-0 top-0 h-8 bg-gradient-to-t from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
+    //     <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-b from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
+    //   </div>
+
+    //   {/* <div
+    //     style={{ maxHeight: 'calc(100vh - 128px)' }}
+    //     className="sticky top-32 hidden w-80 shrink-0 overflow-y-scroll p-8 pr-16 1.5xl:block"
+    //   >
+    //     <TocNavigation headings={post.headings} />
+    //     <div className="absolute inset-x-0 top-0 h-8 bg-gradient-to-t from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
+    //     <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-b from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
+    //   </div> */}
+    // </div>
   )
 }

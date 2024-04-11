@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 // import { Inter } from "next/font/google";
 import 'css/globals.css'
-import  MainNavigation from "@/components/MainNavigation";
+ 
 import SectionContainer from "@/components/SectionContainer";
 import siteMetadata from '@/data/siteMetadata'
-import Footer from "@/components/Footer";
+ 
 // const inter = Inter({ subsets: ["latin"] });
 import { Space_Grotesk } from 'next/font/google'
 const space_grotesk = Space_Grotesk({
@@ -21,11 +21,13 @@ import { SearchProvider } from "pliny/search";
 import { ThemeProviders } from "./theme-providers";
 import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
+import { Footer } from "@/components/Footer";
+import { MainNavigation } from "@/components/MainNavigation";
 // Font files can be colocated inside of `app`
-const myFont = localFont({
-  src: './SpaceGrotesk-VariableFont_wght.ttf',
-  display: 'swap',
-})
+// const myFont = localFont({
+//   src: './SpaceGrotesk-VariableFont_wght.ttf',
+//   display: 'swap',
+// })
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteMetadata.siteUrl),
@@ -74,7 +76,7 @@ export default function RootLayout({
   return (
     <html
       lang={siteMetadata.language}
-      className={` ${GeistMono.variable}  scroll-smooth`}
+      className={` ${GeistMono.variable}  scroll-smooth scroll-padding`}
       suppressHydrationWarning
     >
       
@@ -82,7 +84,7 @@ export default function RootLayout({
       <NoSSR> 
       <ThemeProviders>
  
-      <div className="flex h-screen min-h-screen flex-col justify-between font-sans">
+      <div className="">
       <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
         <MainNavigation/> 
 
@@ -90,9 +92,11 @@ export default function RootLayout({
         <Footer/> */}
         {/* <SectionContainer> */}
         <div className="flex min-h-screen flex-col justify-between">
-          <main className="relative pt-16" style={{ scrollPaddingTop: '150px' }}>
+        <main className="relative pt-16" style={{ scrollPaddingTop: '150px' }}>
             {children}
           </main>
+          <Footer />
+    
           </div>
           {/* </SectionContainer> */}
         {/* <div className="flex min-h-screen flex-col justify-between">
@@ -101,7 +105,7 @@ export default function RootLayout({
           </main>
 
         </div> */}
-        <Footer />
+        {/* <Footer /> */}
       </SearchProvider>
         </div>
  

@@ -29,6 +29,29 @@ import { mdxToMarkdown } from 'mdast-util-mdx'
 
 import { bundleMDX } from 'mdx-bundler'
 
+import type { DocumentGen } from 'contentlayer/core'
+import * as fs from 'node:fs/promises'
+ 
+
+export const contentDirPath = 'content'
+
+export const urlFromFilePath = (doc: DocumentGen): string => {
+  let urlPath = doc._raw.flattenedPath.replace(/^pages\/?/, '/')
+  if (!urlPath.startsWith('/')) urlPath = `/${urlPath}`
+  if ('global_id' in doc) urlPath += `-${doc.global_id}`
+  // Remove preceding indexes from path segments
+  urlPath = urlPath
+    .split('/')
+    .map((segment) => segment.replace(/^\d\d\d\-/, ''))
+    .join('/')
+  return urlPath
+}
+
+export const getLastEditedDate = async (doc: DocumentGen): Promise<Date> => {
+  const stats = await fs.stat(path.join(contentDirPath, doc._raw.sourceFilePath))
+  return stats.mtime
+}
+
 export type DocHeading = { level: 1 | 2 | 3; title: string }
 const root = process.cwd()
 const isProduction = process.env.NODE_ENV === 'production'
@@ -169,6 +192,100 @@ export const Blog = defineDocumentType(() => ({
   },
 }))
 
+export const Doc = defineDocumentType(() => ({
+  name: 'Doc',
+  filePathPattern: `docs/**/*.mdx`,
+  contentType: 'mdx',
+  fields: {
+    global_id: {
+      type: 'string',
+      description: 'Random ID to uniquely identify this doc, even after it moves',
+      required: true,
+    },
+    title: {
+      type: 'string',
+      description: 'The title of the page',
+      required: true,
+    },
+    nav_title: {
+      type: 'string',
+      description: 'Override the title for display in nav',
+    },
+    label: {
+      type: 'string',
+    },
+    excerpt: {
+      type: 'string',
+      required: true,
+    },
+    show_child_cards: {
+      type: 'boolean',
+      default: false,
+    },
+    collapsible: {
+      type: 'boolean',
+      required: false,
+      default: false,
+    },
+    collapsed: {
+      type: 'boolean',
+      required: false,
+      default: false,
+    },
+    // seo: { type: 'nested', of: SEO },
+  },
+  computedFields: {
+    url_path: {
+      type: 'string',
+      description:
+        'The URL path of this page relative to site root. For example, the site root page would be "/", and doc page would be "docs/getting-started/"',
+      resolve: (doc) => {
+        if (doc._id.startsWith('docs/index.md')) return '/docs'
+        return urlFromFilePath(doc)
+      },
+    },
+    url_path_without_id: {
+      type: 'string',
+      description:
+        'The URL path of this page relative to site root. For example, the site root page would be "/", and doc page would be "docs/getting-started/"',
+      resolve: (doc) => urlFromFilePath(doc).replace(new RegExp(`-${doc.global_id}$`), ''),
+    },
+    pathSegments: {
+      type: 'json',
+      resolve: (doc) =>
+        urlFromFilePath(doc)
+          .split('/')
+          // skip `/docs` prefix
+          .slice(2)
+          .map((dirName) => {
+            const re = /^((\d+)-)?(.*)$/
+            const [, , orderStr, pathName] = dirName.match(re) ?? []
+            const order = orderStr ? parseInt(orderStr) : 0
+            return { order, pathName }
+          }),
+    },
+    headings: {
+      type: 'json',
+      resolve: async (doc) => {
+        const headings: DocHeading[] = []
+
+        await bundleMDX({
+          source: doc.body.raw,
+          mdxOptions: (opts) => {
+            opts.remarkPlugins = [...(opts.remarkPlugins ?? []), tocPlugin(headings)]
+            return opts
+          },
+        })
+
+        return [{ level: 1, title: doc.title }, ...headings]
+      },
+    },
+    last_edited: { type: 'date', resolve: getLastEditedDate },
+  },
+  extensions: {},
+}))
+
+
 export const Authors = defineDocumentType(() => ({
   name: 'Authors',
   filePathPattern: 'authors/**/*.mdx',
@@ -188,7 +305,7 @@ export const Authors = defineDocumentType(() => ({
 }))
 export default makeSource({
   contentDirPath: 'content',
-  documentTypes: [Blog,Authors],
+  documentTypes: [Blog,Authors,Doc],
   mdx: {
     cwd: process.cwd(),
     remarkPlugins: [
