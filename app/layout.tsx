@@ -6,12 +6,12 @@ import SectionContainer from "@/components/SectionContainer";
 import siteMetadata from '@/data/siteMetadata'
  
 // const inter = Inter({ subsets: ["latin"] });
-import { Space_Grotesk } from 'next/font/google'
-const space_grotesk = Space_Grotesk({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-space-grotesk',
-})
+// import { Space_Grotesk } from 'next/font/google'
+// const space_grotesk = Space_Grotesk({
+//   subsets: ['latin'],
+//   display: 'swap',
+//   variable: '--font-space-grotesk',
+// })
 
 
 
@@ -23,6 +23,7 @@ import { GeistMono } from 'geist/font/mono'
 import { GeistSans } from 'geist/font/sans'
 import { Footer } from "@/components/Footer";
 import { MainNavigation } from "@/components/MainNavigation";
+import { ColorSchemeProvider } from "@/components/ColorSchemeContext";
 // Font files can be colocated inside of `app`
 // const myFont = localFont({
 //   src: './SpaceGrotesk-VariableFont_wght.ttf',
@@ -76,15 +77,29 @@ export default function RootLayout({
   return (
     <html
       lang={siteMetadata.language}
-      className={` ${GeistMono.variable}  scroll-smooth scroll-padding`}
+      className={`    scroll-smooth scroll-padding`}
       suppressHydrationWarning
     >
-      
+      <head>
+      <script
+            dangerouslySetInnerHTML={{
+              __html: /* js */ `
+                const savedTheme = localStorage.getItem('theme') ?? 'system'
+
+                if (savedTheme === 'dark' || (savedTheme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                  document.documentElement.classList.add('dark')
+                } else {
+                  document.documentElement.classList.remove('dark')
+                }
+          `,
+            }}
+          />
+      </head>
       <body className="bg-white text-black antialiased dark:bg-gray-950 dark:text-white">
       <NoSSR> 
-      <ThemeProviders>
+      <ColorSchemeProvider>
  
-      <div className="">
+      {/* <div className=""> */}
       <SearchProvider searchConfig={siteMetadata.search as SearchConfig}>
         <MainNavigation/> 
 
@@ -92,7 +107,7 @@ export default function RootLayout({
         <Footer/> */}
         {/* <SectionContainer> */}
         <div className="flex min-h-screen flex-col justify-between">
-        <main className="relative pt-16" style={{ scrollPaddingTop: '150px' }}>
+        <main className="relative pt-16  " style={{ scrollPaddingTop: '150px' }}>
             {children}
           </main>
           <Footer />
@@ -107,9 +122,9 @@ export default function RootLayout({
         </div> */}
         {/* <Footer /> */}
       </SearchProvider>
-        </div>
+        {/* </div> */}
  
-        </ThemeProviders>
+        </ColorSchemeProvider>
         </NoSSR> 
         </body>
     </html>

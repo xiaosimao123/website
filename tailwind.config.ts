@@ -9,7 +9,7 @@ const config: Config = {
     './pages/**/*.{js,ts,tsx}',
     './components/**/*.{js,ts,tsx}',
     './layouts/**/*.{js,ts,tsx}',
-    './data/**/*.mdx',
+    './content/**/*.mdx',
   ],
   darkMode: 'class',
   theme: {
@@ -35,6 +35,12 @@ const config: Config = {
       typography: ({ theme }) => ({
         DEFAULT: {
           css: {
+            pre: {
+       
+              marginTop: 0,
+              marginBottom: 0,
+     
+            },
             a: {
               color: theme('colors.primary.500'),
               '&:hover': {

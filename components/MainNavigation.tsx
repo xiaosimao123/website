@@ -7,6 +7,7 @@ import { Logo } from './Logo'
 import { Icon, IconName } from './common/Icon'
 import { isExternalUrl } from 'utils/helpers'
 import { Label } from './common/Label'
+import { ColorSchemeSwitcher } from './common/ColorSchemeSwitcher'
 
 const navLinks: Array<{ label: string; url: string }> = [
   { label: 'Documentation', url: '/docs' },
@@ -17,6 +18,7 @@ const navLinks: Array<{ label: string; url: string }> = [
   { label: 'Tags', url: '/tags' },
 
   { label: 'Projects', url: '/projects' },
+  { label: 'About', url: '/about' },
   //
   // NOTE until we have a proper example overview page and multiple examples, link directly to Next.js example
   // { label: 'Examples', url: '/examples/nextjs' },
@@ -137,7 +139,7 @@ export const MainNavigation = () => {
             </div>
           </div>
           <div className="flex items-center pl-2 lg:space-x-2 lg:pl-8">
-            {/* <ColorSchemeSwitcher /> */}
+            <ColorSchemeSwitcher />
             {iconLinks.map(({ label, icon, url }, index) => (
               <NavLink key={index} label={label} hideLabel url={url} icon={icon} />
             ))}
