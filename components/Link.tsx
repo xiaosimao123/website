@@ -22,7 +22,7 @@ import { Icon } from './common/Icon';
 // export default CustomLink
 
 
-export const Link: FC<{ href: string; children: ReactNode }> = ({ href, children }) => {
+ const   Link: FC<{ href: string; children: ReactNode }> = ({ href, children }) => {
   const isExternalUrl = !(href.startsWith('/') || href.startsWith('#'))
 
   return (
@@ -42,3 +42,4 @@ export const Link: FC<{ href: string; children: ReactNode }> = ({ href, children
     </NextLink>
   )
 }
+export  default Link;

@@ -1,5 +1,5 @@
-import '@/css/prism.css'
-import 'katex/dist/katex.css'
+// import '@/css/prism.css'
+// import 'katex/dist/katex.css'
 
 import PageTitle from '@/components/PageTitle'
  
@@ -132,6 +132,14 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
         <Author key={index} {...author} />
       ))}
       {post.related_posts && <RelatedPosts posts={post.related_posts} />} */}
+    </div>
+    <div
+ 
+      className="fixed flex top-[146px] left-[20px]"
+    >
+      <TocNavigation headings={post.headings} />
+    
+      
     </div>
   </div>
 

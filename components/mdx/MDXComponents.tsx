@@ -13,6 +13,7 @@ import {   OptionsTable,
   OptionTitle,
   OptionDescription } from '../docs/OptionsTable'
 import { H2, H3, H4 } from '@/components/common/Headings'
+import Blockquote from '../Blockquote'
 
 export const components: MDXComponents = {
   Image,
@@ -24,7 +25,7 @@ export const components: MDXComponents = {
   Callout,
   table: TableWrapper,
   BlogNewsletterForm,
-
+  // blockquote: Blockquote,
   h2: H2,
   h3: H3,
   h4: H4,

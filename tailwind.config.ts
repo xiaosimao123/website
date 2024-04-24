@@ -56,7 +56,7 @@ const config: Config = {
               fontWeight: '600',
             },
             code: {
-              color: theme('colors.indigo.500'),
+              color: theme('colors.pink.500'),
             },
           },
         },

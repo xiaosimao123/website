@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 // import { Inter } from "next/font/google";
 import 'css/globals.css'
- 
+import '@/css/prism-one-dark.css'
+import '@/css/prism-one-light.css'
 import SectionContainer from "@/components/SectionContainer";
 import siteMetadata from '@/data/siteMetadata'
  
