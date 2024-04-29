@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 // import { Inter } from "next/font/google";
 import 'css/globals.css'
+import '@/css/prism.css'
 import '@/css/prism-one-dark.css'
 import '@/css/prism-one-light.css'
 import SectionContainer from "@/components/SectionContainer";
@@ -14,14 +15,15 @@ import siteMetadata from '@/data/siteMetadata'
 //   variable: '--font-space-grotesk',
 // })
 
+import { GeistSans } from 'geist/font/sans';
+import { GeistMono } from 'geist/font/mono';
 
 
 import localFont from 'next/font/local'
 import NoSSR from "./NoSSR";
 import { SearchProvider } from "pliny/search";
 import { ThemeProviders } from "./theme-providers";
-import { GeistMono } from 'geist/font/mono'
-import { GeistSans } from 'geist/font/sans'
+ 
 import { Footer } from "@/components/Footer";
 import { MainNavigation } from "@/components/MainNavigation";
 import { ColorSchemeProvider } from "@/components/ColorSchemeContext";
@@ -78,7 +80,7 @@ export default function RootLayout({
   return (
     <html
       lang={siteMetadata.language}
-      className={`    scroll-smooth scroll-padding`}
+      className={`${GeistSans.variable} ${GeistMono.variable} scroll-smooth scroll-padding`}
       suppressHydrationWarning
     >
       <head>

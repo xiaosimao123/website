@@ -3,7 +3,10 @@
 @tailwind utilities;
 
 @layer base {
- 
+  /* @font-face {
+    font-family: 'Roboto';
+    src: url(/fonts/Roboto.woff2) format('woff2');
+  } */
   
     .scroll-padding {
       scroll-padding-top: 150px;
@@ -25,9 +28,9 @@
       fill: currentColor;
     }
   
-    /* code {
+    code {
       @apply rounded bg-gray-200 py-0.5 px-1 text-sm dark:bg-gray-800;
-    } */
+    }
   
     .prose code.hljs {
       @apply bg-transparent;
@@ -136,28 +139,3 @@
     }
   }
   
-/* Code block styles */
-.code-highlight {
-  @apply float-left min-w-full;
-}
-
-.code-line {
-  @apply -mx-4 block border-l-4 border-transparent pl-4 pr-4;
-}
-
-.code-line.inserted {
-  @apply bg-green-500 bg-opacity-20;
-}
-
-.code-line.deleted {
-  @apply bg-red-500 bg-opacity-20;
-}
-
-.highlight-line {
-  @apply -mx-4 border-l-4 border-primary-500 bg-gray-300 bg-opacity-50 dark:bg-gray-600;
-}
-
-.line-number::before {
-  @apply -ml-2 mr-4 inline-block w-4 text-right text-gray-400;
-  content: attr(line);
-}

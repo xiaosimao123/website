@@ -36,7 +36,14 @@ const config: Config = {
         DEFAULT: {
           css: {
             pre: {
-       
+              // fontFamily: {
+              //   // sans: ['var(--font-space-grotesk)', ...fontFamily.sans],
+             
+              //   mono: ['var(--font-geist-mono)'],
+              // },
+              // fontWeight: 600,
+
+              // fontFamily:var(--font-geist-sans),
               marginTop: 0,
               marginBottom: 0,
      
@@ -56,24 +63,33 @@ const config: Config = {
               fontWeight: '600',
             },
             code: {
-              color: theme('colors.pink.500'),
+              // fontWeight: '600',
+              color: theme('colors.primary.600'),
+              borderColor: theme('colors.primary.300'),
+              backgroundColor: theme('colors.primary.100'),
             },
+ 
+  
           },
         },
-        invert: {
-          css: {
-            a: {
-              color: theme('colors.primary.500'),
-              '&:hover': {
-                color: `${theme('colors.primary.400')}`,
-              },
-              code: { color: theme('colors.primary.400') },
-            },
-            'h1,h2,h3,h4,h5,h6': {
-              color: theme('colors.gray.100'),
-            },
-          },
-        },
+        // invert: {
+        //   css: {
+        //     a: {
+        //       color: theme('colors.primary.500'),
+        //       '&:hover': {
+        //         color: `${theme('colors.primary.400')}`,
+        //       },
+        //       code: {
+        //         color: theme('colors.primary.600'),
+        //         borderColor: theme('colors.primary.300'),
+        //         backgroundColor: theme('colors.primary.100'),
+        //       },
+        //     },
+        //     'h1,h2,h3,h4,h5,h6': {
+        //       color: theme('colors.gray.100'),
+        //     },
+        //   },
+        // },
       }),
     },
   },
