@@ -122,19 +122,23 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
   // <TocNavigation headings={post.headings} />
   // </Layout>
   return (
-    <div className="relative w-full mx-12 max-w-screen-2xl lg:flex lg:items-start">
-      <div
+    <div className="relative w-full   max-w-screen-3xl  lg:flex lg:items-start">
+      {/* <div
         style={{ height: 'calc(100vh - 64px)' }}
         className="sticky hidden border-r border-gray-200 top-16 shrink-0 dark:border-gray-800 lg:block"
       >
         <div className="min-w-96 h-full p-2 pl-2 -ml-3 overflow-y-scroll">
           <TocNavigation headings={post.headings} />
         </div>
-      </div>
+      </div> */}
 
       <div className="relative w-full grow">
         <BlogHeader post={post} />
-        <div className="blog prose prose-lg prose-slate prose-violet relative mx-auto w-full max-w-full prose-headings:mt-16 prose-headings:font-semibold prose-a:font-normal prose-code:font-normal prose-code:before:content-none prose-code:after:content-none prose-hr:border-gray-200 dark:prose-invert dark:prose-a:text-violet-400 dark:prose-hr:border-gray-800 lg:max-w-[994px] lg:px-16">
+        <div className="blog prose prose-lg prose-slate prose-violet relative mx-auto 
+         w-full max-w-full prose-headings:mt-16 prose-headings:font-semibold prose-a:font-normal 
+         prose-code:font-normal prose-code:before:content-none prose-code:after:content-none
+          prose-hr:border-gray-200 dark:prose-invert dark:prose-a:text-violet-400
+           dark:prose-hr:border-gray-800 lg:max-w-[980px] lg:px-16">
           <Mdx code={post.body.code} />
           <hr />
           {/* {post.authors.map((author, index) => (

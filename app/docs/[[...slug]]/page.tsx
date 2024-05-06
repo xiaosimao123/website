@@ -120,7 +120,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
 
   return (
  
-    <div className="relative w-full mx-auto max-w-screen-2xl lg:flex lg:items-start">
+    <div className="relative w-full  max-w-screen-3xl lg:flex lg:items-start">
     <div
       style={{ height: 'calc(100vh - 64px)' }}
       className="sticky hidden border-r border-gray-200 top-16 shrink-0 dark:border-gray-800 lg:block"

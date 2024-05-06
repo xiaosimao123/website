@@ -176,6 +176,20 @@ export const Blog = defineDocumentType(() => ({
   },
   computedFields: {
     ...computedFields,
+    pathSegments: {
+      type: 'json',
+      resolve: (doc) =>
+        urlFromFilePath(doc)
+          .split('/')
+          // skip `/docs` prefix
+          .slice(2)
+          .map((dirName) => {
+            const re = /^((\d+)-)?(.*)$/
+            const [, , orderStr, pathName] = dirName.match(re) ?? []
+            const order = orderStr ? parseInt(orderStr) : 0
+            return { order, pathName }
+          }),
+    },
     structuredData: {
       type: 'json',
       resolve: (doc) => ({

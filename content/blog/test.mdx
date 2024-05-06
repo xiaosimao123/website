@@ -1,0 +1,105 @@
+---
+title: 'features test in v1'
+date: 2021-08-07T15:32:14Z
+lastmod: '2021-02-01'
+tags: ['next-js', 'tailwind', 'test']
+draft: false
+summary: 'test'
+layout: PostSimple
+bibliography: references-data.bib
+---
+ 
+ 
+
+| Product        | Feature                    | Stage           | Available on self-hosted                    |
+| -------------- | -------------------------- | --------------- | ------------------------------------------- |
+| Database       | Postgres                   | `GA`            | ✅                                          |
+| Database       | Vector Database            | `GA`            | ✅                                          |
+| Database       | Auto-generated Rest API    | `GA`            | ✅                                          |
+| Database       | Auto-generated GraphQL API | `GA`            | ✅                                          |
+| Database       | Webhooks                   | `beta`          | ✅                                          |
+| Database       | Vault                      | `public alpha`  | ✅                                          |
+| Platform       |                            | `GA`            | ✅                                          |
+
+<StepHikeCompact>
+
+  <StepHikeCompact.Step   step={1}>
+
+    <StepHikeCompact.Details title="Set up Supabase locally">
+
+    Make sure you have the latest version of the [Supabase CLI installed]().
+
+    Initialize Supabase in the root directory of your app.
+
+    </StepHikeCompact.Details>
+
+    <StepHikeCompact.Details>
+
+    ```bash
+    supabase init
+    ```
+
+    </StepHikeCompact.Details>
+
+  </StepHikeCompact.Step>
+
+  <StepHikeCompact.Step step={2}>
+    <StepHikeCompact.Details title="Create a migrations file">
+
+    To make changes to our local database, we need to create a new migration. This will create a new `.sql` file in our `supabase/migrations` folder, where we can write SQL that will be applied to our local database when starting Supabase locally.
+
+    </StepHikeCompact.Details>
+
+    <StepHikeCompact.Code>
+
+      ```bash
+      supabase migration new init
+      ```
+
+    </StepHikeCompact.Code>
+
+  </StepHikeCompact.Step>
+
+  <StepHikeCompact.Step step={3}>
+    <StepHikeCompact.Details title="Enable the pgvector extension">
+
+    Copy the following SQL line into the newly created migration file to enable the pgvector extension.
+
+    </StepHikeCompact.Details>
+
+    <StepHikeCompact.Code>
+
+      ```sql
+      -- Enable pgvector extension
+      create extension if not exists vector with schema public;
+      ```
+
+    </StepHikeCompact.Code>
+
+  </StepHikeCompact.Step>
+  </StepHikeCompact>
+
+
+ 
+
+
+ 
+
+<RefSubLayout.EducationRow>
+  <RefSubLayout.Details>
+
+ has been deprecated in favor of more explicit method signatures to help with type hinting. Previously it was difficult for developers to know what they were missing (e.g., a lot of developers didn't realize they could use passwordless magic links).
+
+  </RefSubLayout.Details>
+  <RefSubLayout.Examples>
+
+ 
+
+```dart
+await supabase.auth.signIn(email: email, password: password);
+```
+
+ 
+
+  </RefSubLayout.Examples>
+</RefSubLayout.EducationRow>

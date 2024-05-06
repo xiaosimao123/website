@@ -3,7 +3,7 @@ import Pre from 'pliny/ui/Pre'
 import BlogNewsletterForm from 'pliny/ui/BlogNewsletterForm'
 import type { MDXComponents } from 'mdx/types'
 import Image from '../Image'
- 
+
 import TableWrapper from '../TableWrapper'
 import { DocsCard as Card } from '@/components/docs/DocsCard'
 import { ChevronLink } from '@/components/common/ChevronLink'
@@ -14,8 +14,17 @@ import {   OptionsTable,
   OptionDescription } from '../docs/OptionsTable'
 import { H2, H3, H4 } from '@/components/common/Headings'
 import Blockquote from '../Blockquote'
-
+import StepHikeCompact from '../common/StepHikeCompact'
+ 
+import  RefSubLayout   from '../layouts/ref/RefSubLayout'
+ 
+ 
+ 
+ 
+ 
 export const components: MDXComponents = {
+  RefSubLayout,
+ 
   Image,
   TOCInline,
   // a: CustomLink,
@@ -25,6 +34,7 @@ export const components: MDXComponents = {
   Callout,
   table: TableWrapper,
   BlogNewsletterForm,
+  StepHikeCompact,
   // blockquote: Blockquote,
   h2: H2,
   h3: H3,
