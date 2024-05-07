@@ -122,17 +122,18 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
   // <TocNavigation headings={post.headings} />
   // </Layout>
   return (
-    <div className="relative w-full   max-w-screen-3xl  lg:flex lg:items-start">
-      {/* <div
-        style={{ height: 'calc(100vh - 64px)' }}
-        className="sticky hidden border-r border-gray-200 top-16 shrink-0 dark:border-gray-800 lg:block"
-      >
-        <div className="min-w-96 h-full p-2 pl-2 -ml-3 overflow-y-scroll">
-          <TocNavigation headings={post.headings} />
-        </div>
-      </div> */}
+    // <div className="relative w-full   max-w-screen-3xl  lg:flex lg:items-start">
+    //   {/* <div
+    //     style={{ height: 'calc(100vh - 64px)' }}
+    //     className="sticky hidden border-r border-gray-200 top-16 shrink-0 dark:border-gray-800 lg:block"
+    //   >
+    //     <div className="min-w-96 h-full p-2 pl-2 -ml-3 overflow-y-scroll">
+    //       <TocNavigation headings={post.headings} />
+    //     </div>
+    //   </div> */}
 
-      <div className="relative w-full grow">
+    //   <div className="relative w-full grow">
+    <>
         <BlogHeader post={post} />
         <div className="blog prose prose-lg prose-slate prose-violet relative mx-auto 
          w-full max-w-full prose-headings:mt-16 prose-headings:font-semibold prose-a:font-normal 
@@ -146,8 +147,9 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
       ))}
       {post.related_posts && <RelatedPosts posts={post.related_posts} />} */}
         </div>
-      </div>
-    </div>
+        </>
+    //   </div>
+    // </div>
     // <div className="relative w-full mx-auto max-w-screen-2xl lg:flex lg:items-start">
     //   <div className="relative w-full grow">
     //   <DocsHeader tree={[]} breadcrumbs={[]} title={"doc.title"} />

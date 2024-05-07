@@ -24,9 +24,9 @@
       @apply h-full;
     }
   
-    svg path {
+    /* svg path {
       fill: currentColor;
-    }
+    } */
   
     code {
       @apply rounded bg-gray-200 py-0.5 px-1 text-sm dark:bg-gray-800;

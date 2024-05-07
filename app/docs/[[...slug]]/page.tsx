@@ -120,7 +120,8 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
 
   return (
  
-    <div className="relative w-full  max-w-screen-3xl lg:flex lg:items-start">
+    // <div className="relative w-full  max-w-screen-3xl lg:flex lg:items-start">
+    <>
     <div
       style={{ height: 'calc(100vh - 64px)' }}
       className="sticky hidden border-r border-gray-200 top-16 shrink-0 dark:border-gray-800 lg:block"
@@ -165,7 +166,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
       <TocNavigation headings={doc.headings} />
       <div className="absolute inset-x-0 top-0 h-8 bg-gradient-to-t from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
       <div className="absolute inset-x-0 bottom-0 h-8 bg-gradient-to-b from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />
-    </div>
-  </div>
+    </div></>
+ 
   )
 }
