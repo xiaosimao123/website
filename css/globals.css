@@ -23,10 +23,12 @@
     .svg-h-full svg {
       @apply h-full;
     }
-  
-    /* svg path {
+    .notFill svg path {
+      fill: none;
+    }
+    svg path {
       fill: currentColor;
-    } */
+    }
   
     code {
       @apply rounded bg-gray-200 py-0.5 px-1 text-sm dark:bg-gray-800;
@@ -39,15 +41,20 @@
     .prose a code {
       @apply dark:text-violet-400 !important;
     }
-  
-    .prose pre {
+    .remark-code-title {
+      @apply   -mb-3 rounded-t rounded-b-none px-5 py-3    text-sm font-bold   bg-gray-100 dark:text-white dark:bg-gray-800  ;
+    }
+    .blog.prose pre  {
+      @apply rounded-t-none ;
+    }
+    /* .prose pre {
       @apply mt-0   rounded-t-none rounded-b ;
     }
     .prose > .remark-code-title {
-      @apply rounded-t bg-gray-700 px-5 py-3 font-mono text-sm font-bold text-gray-200 dark:bg-gray-800;
+      @apply text-red-400  rounded-t bg-gray-700 px-5 py-3 font-mono text-sm font-bold  dark:bg-gray-800;
      
-    }
-    @media (min-width: 1024px) {
+    } */
+    /* @media (min-width: 1024px) {
       .docs.prose pre {
         @apply mt-0 rounded-t-none rounded-b; 
         max-width: calc(100vw - 520px);
@@ -58,7 +65,7 @@
       }
 
       .blog.prose > .remark-code-title {
-        @apply rounded-t bg-gray-700 px-5 py-3 font-mono text-sm font-bold text-gray-200 dark:bg-gray-800;
+        @apply rounded-t text-red-400  bg-gray-700 px-5 py-3 font-mono text-sm font-bold text-gray-200 dark:bg-gray-800;
         max-width: calc(100vw - 352px);
       }
     }
@@ -91,11 +98,11 @@
         @apply mt-0 rounded-t-none rounded-b; 
         max-width: 832px;
       }
-      .blog.prose > .remark-code-title {
-        @apply rounded-t bg-gray-200 px-5 py-3 font-mono text-red-400 text-sm font-bold  dark:text-gray-300  dark:bg-gray-800;
+      .blog .prose > .remark-code-title {
+        @apply rounded-t bg-gray-400 px-5 py-3 font-mono text-red-400 text-sm font-bold  dark:text-gray-300  dark:bg-gray-300;
         max-width: 832px;
       }
-    }
+    } */
   
     @keyframes scroll {
       0% {
@@ -137,5 +144,7 @@
     html.dark {
       color-scheme: dark;
     }
+
+
   }
   

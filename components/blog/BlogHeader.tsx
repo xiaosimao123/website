@@ -23,7 +23,7 @@ export const BlogHeader: FC<{ post: Blog }> = ({ post }) => {
 
   return (
     <>
-      <div className="mx-auto    mb-4 space-y-8 lg:max-w-[980px] lg:space-y-12 lg:px-16">
+      <div className="mx-auto    mb-16 space-y-8 lg:max-w-[980px] lg:space-y-12 lg:px-16">
         <div className="space-y-4">
           <h1 className="text-2xl font-semibold text-slate-800 dark:text-slate-200 md:text-3xl lg:text-4xl">
             {post.title}
@@ -32,7 +32,9 @@ export const BlogHeader: FC<{ post: Blog }> = ({ post }) => {
             <span className="mt-1 mr-2 block w-3 shrink-0 text-violet-600 dark:text-violet-400">
               <Icon name="calendar" />
             </span>
-            <span>{format(new Date(post.date), 'MMMM dd, yyyy')}</span>
+            <span>{format(new Date(post.date), 'yyyy-MM-dd')}</span>
+            / 
+            <span>{   post.readingTime.text}</span>  
           </p>
         </div>
       </div>
@@ -41,7 +43,7 @@ export const BlogHeader: FC<{ post: Blog }> = ({ post }) => {
           top ? 'opacity-0' : 'opacity-100'
         }`}
       >
-        <div className="flex h-full items-center space-x-2 px-16 text-sm">
+        <div className="mx-auto h-full lg:max-w-[994px] lg:px-16">
           <div className="flex h-full items-center space-x-2 text-sm">
             <Link legacyBehavior href="/blog">
               <a className="inline whitespace-nowrap hover:text-slate-600 dark:hover:text-slate-300">

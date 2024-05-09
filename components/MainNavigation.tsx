@@ -14,6 +14,7 @@ import { ColorSchemeSwitcher } from './common/ColorSchemeSwitcher'
 import React from 'react';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import classNames from 'classnames';
+import ScrollProgress from './ScrollProgress'
 
 const navLinks: Array<{ label: string; url: string,isHover:boolean }> = [
   { label: 'Documentation', url: '/docs',isHover:false },
@@ -153,8 +154,12 @@ export const MainNavigation = () => {
             ))}
           </div>
         </nav>
+    
       </div>
+      {/* Todo
+       <ScrollProgress/> */}
     </header>
+       
   )
 }
 

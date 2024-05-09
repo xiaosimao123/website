@@ -140,7 +140,8 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
          prose-code:font-normal prose-code:before:content-none prose-code:after:content-none
           prose-hr:border-gray-200 dark:prose-invert dark:prose-a:text-violet-400
            dark:prose-hr:border-gray-800 lg:max-w-[980px] lg:px-16">
-          <Mdx code={post.body.code} />
+            <article> 
+          <Mdx code={post.body.code} /></article>
           <hr />
           {/* {post.authors.map((author, index) => (
         <Author key={index} {...author} />
