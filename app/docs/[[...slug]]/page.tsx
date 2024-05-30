@@ -126,7 +126,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
       style={{ height: 'calc(100vh - 64px)' }}
       className="sticky hidden border-r border-gray-200 top-16 shrink-0 dark:border-gray-800 lg:block"
     >
-      <div className="h-full p-8 pl-16 -ml-3 overflow-y-scroll">
+      <div className="h-full p-4 pl-8 -ml-3 overflow-y-scroll">
         <DocsNavigation tree={tree} />
       </div>
       <div className="absolute inset-x-0 top-0 h-8 bg-gradient-to-t from-white/0 to-white/100 dark:from-gray-950/0 dark:to-gray-950/100" />

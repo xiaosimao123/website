@@ -37,6 +37,6 @@
     ".contentlayer/generated",
     ".contentlayer/generated/**/*.json",
     ".next/types/**/*.ts"
-  ],
+, "app/livedemo/Tabs.jsx"  ],
   "exclude": ["node_modules"]
 }

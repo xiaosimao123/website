@@ -30,7 +30,7 @@ import { MainNavigation } from "@/components/MainNavigation";
 import { ColorSchemeProvider } from "@/components/ColorSchemeContext";
 // Font files can be colocated inside of `app`
 // const myFont = localFont({
-//   src: './SpaceGrotesk-VariableFont_wght.ttf',
+//   src: '../public/fonts/SpaceGrotesk-VariableFont_wght.ttf',
 //   display: 'swap',
 // })
 
@@ -110,7 +110,7 @@ export default function RootLayout({
         {/* <main className="mb-auto">{children}</main>
         <Footer/> */}
         {/* <SectionContainer> */}
-        <div className="flex min-h-screen flex-col justify-between">
+        <div className="relative w-full mx-8 max-w-screen-3xl flex-col justify-between">
         <main className="relative pt-16  " style={{ scrollPaddingTop: '150px' }}>
             {children}
           </main>

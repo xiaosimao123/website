@@ -4,7 +4,7 @@ export default function DocLayout({
     children: React.ReactNode
   }) {
     return (
-      <div className="relative w-full  max-w-screen-3xl lg:flex lg:items-start">
+      <div className="relative w-full max-w-screen-1.5xl  lg:flex lg:items-start">
    
         {children}
       </div>

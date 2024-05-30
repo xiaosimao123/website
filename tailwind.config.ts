@@ -56,6 +56,7 @@ const config: Config = {
         current: colors.violet,
         primary: colors.violet,
         gray: colors.gray,
+ 
       },
       typography: ({ theme }) => ({
         DEFAULT: {
