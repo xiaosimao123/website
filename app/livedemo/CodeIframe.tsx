@@ -61,8 +61,8 @@ export  const  CodeIframe: FC<{   htmlfile?: string,cssfile?: string, jsfile?: s
   }
 
     return (
-      <div className="h-screen">
-      <div className="w-screen h-screen">
+      <div className="h-full">
+      <div className="w-screen h-full">
         <div className="flex flex-row  h-full ">
           <div className="w-1/2 h-full">
             <Tabs>
@@ -96,7 +96,7 @@ export  const  CodeIframe: FC<{   htmlfile?: string,cssfile?: string, jsfile?: s
             </Tabs>
           </div>
           <div className="h-full w-1/2 border-gray-200 ">
-            <iframe className="h-full w-full" ref={iframeRef} src="about:blank" title="preview"></iframe>
+            <iframe className="h-screen  w-full" ref={iframeRef} src="about:blank" title="preview"></iframe>
           </div>
         </div>
       </div>

@@ -9,6 +9,8 @@ import siteMetadata from './data/siteMetadata.js'
 // Remark packages
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
+import highlight from 'rehype-highlight'
+import remarkShikiTwoslash from 'remark-shiki-twoslash'
 import {
   remarkExtractFrontmatter,
   remarkCodeTitles,
@@ -31,8 +33,9 @@ import { bundleMDX } from 'mdx-bundler'
 
 import type { DocumentGen } from 'contentlayer/core'
 import * as fs from 'node:fs/promises'
+import rehypePrettyCode from 'rehype-pretty-code'
  
-
+import rehypeShiki from '@shikijs/rehype'
 export const contentDirPath = 'content'
 
 export const urlFromFilePath = (doc: DocumentGen): string => {
@@ -325,6 +328,12 @@ export default makeSource({
     remarkPlugins: [
       remarkExtractFrontmatter,
       remarkGfm,
+    //   [remarkShikiTwoslash, {
+    //     themes: ['dark-plus', 'light-plus'],
+    //     alwayRaiseForTwoslashExceptions: true,
+    //     // https://github.com/shikijs/twoslash/issues/131
+    //     disableImplicitReactImport: true,
+    // }],
       remarkCodeTitles,
       remarkMath,
       remarkImgToJsx,
@@ -334,6 +343,22 @@ export default makeSource({
       rehypeAutolinkHeadings,
       rehypeKatex,
       [rehypeCitation, { path: path.join(root, 'data') }],
+      // highlight,
+      // [remarkShikiTwoslash, { theme: "dark-plus" }],
+      // [
+      //   rehypePrettyCode,
+      //   {
+      //     // 代码主题类型 https://unpkg.com/browse/shiki@0.14.2/themes/
+      //     // themes: {
+      //     //   light: 'github-light',
+      //     //   dark: 'github-dark',
+      //     // },
+      //     theme: 'github-dark',
+      //     // To apply a custom background instead of inheriting the background from the theme
+      //     keepBackground: false,
+      //   },
+      // ],
+ 
       [rehypePrismPlus, { defaultLanguage: 'js', ignoreMissing: true }],
       rehypePresetMinify,
     ],

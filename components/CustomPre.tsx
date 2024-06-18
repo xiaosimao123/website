@@ -65,11 +65,11 @@ function CustomPre({ children, className, ...props }: Props) {
   };
 
   return (
-    <div className="group relative">
+    <div className="group relative pre">
       <pre
         {...props}
         ref={preRef}
-        className={clsx(className, 'focus:outline-none')}
+        className={clsx(className, 'focus:outline-none','pre')}
       >
         <div className="absolute top-0 right-0 m-2 flex items-center rounded-md ">
           <span

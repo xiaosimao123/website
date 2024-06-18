@@ -5,6 +5,11 @@ import '@/css/prism-one-dark.css'
 import '@/css/prism-one-light.css'
 import '@/css/prism.css'
 import 'css/globals.css'
+// import 'css/mdx.css'
+// import 'css/twoslash-shiki.css'
+// import 'css/hljs-github-dark.css'
+// import 'css/github.css'
+
 import SectionContainer from "@/components/SectionContainer";
 import siteMetadata from '@/data/siteMetadata'
  

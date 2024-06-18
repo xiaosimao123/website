@@ -15,6 +15,11 @@ const nextConfig = withContentlayer({
 
     return config
   },
+  typescript: {
+    // Dangerously allow production builds to successfully complete even if
+    // your project has type errors.
+    ignoreBuildErrors: true,
+  }
 });
 
 module.exports = nextConfig;

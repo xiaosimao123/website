@@ -27,15 +27,29 @@ See [upgrade guide](#upgrade-guide) below if you are migrating from v0 version o
 
 You can easily modify the theme color by changing the primary attribute in the tailwind config file:
 
-```js:tailwind.config.js
-theme: {
-    colors: {
-      primary: colors.teal,
-      gray: colors.neutral,
-      ...
-    }
-  ...
+```jsx
+enum LogLevel {
+  ERROR,
+  WARN,
+  INFO,
+  DEBUG,
 }
+
+/**
+ * This is equivalent to:
+ * type LogLevelStrings = 'ERROR' | 'WARN' | 'INFO' | 'DEBUG';
+ */
+type LogLevelStrings = keyof typeof LogLevel;
+
+function printImportant(key: LogLevelStrings, message: string) {
+  const num = LogLevel[key];
+  if (num <= LogLevel.WARN) {
+    console.log("Log level key is:", key);
+    console.log("Log level value is:", num);
+    console.log("Log level message is:", message);
+  }
+}
+printImportant("ERROR", "This is a message");
 ```
 
 The primary color attribute should be assigned an object with keys from 50, 100, 200 ... 900 and the corresponding color code values.
@@ -295,7 +309,7 @@ Line highlighting and line numbers are now supported out of the box thanks to th
 The following javascript code block:
 
 ````
-```js {1, 3-4} showLineNumbers
+```js:test.js {1, 3-4} showLineNumbers
 var num1, num2, sum
 num1 = prompt('Enter first number')
 num2 = prompt('Enter second number')
@@ -312,6 +326,8 @@ num1 = prompt('Enter first number')
 num2 = prompt('Enter second number')
 sum = parseInt(num1) + parseInt(num2) // "+" means "add"
 alert('Sum = ' + sum) // "+" means combine into a string
++ Added line
+- Deleted line
 ```
 
 To modify the styles, change the following class selectors in the `prism.css` file:

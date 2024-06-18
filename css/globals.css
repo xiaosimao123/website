@@ -41,9 +41,24 @@
     .prose a code {
       @apply dark:text-violet-400 !important;
     }
+    /* Code title styles */
     .remark-code-title {
-      @apply   -mb-3 rounded-t rounded-b-none px-5 py-3       bg-gray-100 dark:text-white dark:bg-gray-800  ;
+      @apply rounded-t bg-gray-100  dark:text-gray-500   text-sm dark:bg-gray-800 px-5 py-3    text-gray-700;
     }
+
+    .remark-code-title + div > pre {
+      @apply mt-0 rounded-t-none;
+    }
+
+    /* .remark-code-title {
+      @apply   -mb-3 rounded-t rounded-b-none px-5 py-3   font-mono     bg-gray-100 dark:text-white dark:bg-gray-800  ;
+
+    }
+
+    .remark-code-title + div > pre {
+      @apply mt-0 rounded-t-none dark:bg-gray-900;
+    } */
+
     .blog.prose pre  {
       @apply rounded-t-none ;
     }
@@ -162,6 +177,11 @@
     .blog.prose pre {
       max-width: calc(100vw - 672px);
       min-width: 852px;
+    }
+    .blog.prose .pre::before {
+      @apply absolute left-0 top-0 float-left h-10 w-full rounded-t-lg;
+      @apply  px-20 py-0 indent-4 text-base font-bold leading-10 bg-current-600 ;
+    
     }
   }
 

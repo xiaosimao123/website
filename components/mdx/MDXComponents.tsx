@@ -18,20 +18,43 @@ import StepHikeCompact from '../common/StepHikeCompact'
  
 import  RefSubLayout   from '../layouts/ref/RefSubLayout'
 import CustomPre from '../CustomPre'
+import { Button } from '../Button'
+import Code from '../common/Code/Code'
  
  
- 
+const CustomCodeBlock = ({
+  children,
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLPreElement>) => {
+  // Convert the children into a string
+  return (
+    <div className="mb-4 mt-6 relative rounded-lg  ">
+      {/* <div className="flex justify-end py-1 pr-3 bg-zinc-600 text-gray-300 rounded-t-lg">
+        <CopyButton>{children}</CopyButton>
+      </div> */}
+      <pre
+        className= "overflow-x-auto bg-gray-700 py-4 rounded-b-lg" 
+        {...props}
+      >
+        <code>{children}</code>
+      </pre>
+    </div>
+  );
+};
  
  
 export const components: MDXComponents = {
   RefSubLayout,
- 
+  Button,
   Image,
   TOCInline,
   // a: CustomLink,
   Card,
   ChevronLink,
+  // pre: CustomCodeBlock,
   pre: CustomPre,
+  // pre:Code,
   Callout,
   table: TableWrapper,
   BlogNewsletterForm,
