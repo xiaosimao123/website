@@ -2,6 +2,7 @@ import type { Config } from "tailwindcss";
 // @ts-check
 const { fontFamily } = require('tailwindcss/defaultTheme')
 const colors = require('tailwindcss/colors')
+const plugin = require("tailwindcss/plugin")
 const config: Config = {
   content: [
     './node_modules/pliny/**/*.js',
@@ -89,7 +90,7 @@ const config: Config = {
               fontWeight: '600',
             },
             code: {
-              // fontWeight: '600',
+              fontWeight: '600',
               color: theme('colors.primary.600'),
               borderColor: theme('colors.primary.300'),
               backgroundColor: theme('colors.primary.100'),
@@ -119,6 +120,16 @@ const config: Config = {
       }),
     },
   },
-  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
+  variants: {
+    extend: {},
+  },
+  plugins: [
+    plugin(function ({ addBase, theme }) {
+      addBase({
+
+      })
+    }),
+    require('@tailwindcss/forms'), 
+    require('@tailwindcss/typography')],
 };
 export default config;

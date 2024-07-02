@@ -13,6 +13,24 @@ bibliography: references-data.bib
 
 A post on the new features introduced  `App.tsx` in v1.0. New features:
 
+```sql
+CREATE SCHEMA Empresa;
+CREATE SCHEMA Universidade;
+CREATE DATABASE Hospital;
+```
+
+<FileTree>
+  <FileTreeFolder name="pages" defaultOpen>
+    <FileTreeFile name="_meta.json" />
+    <FileTreeFile name="contact.md" />
+    <FileTreeFile name="index.mdx" />
+    <FileTreeFolder name="about">
+      <FileTreeFile name="_meta.json" />
+      <FileTreeFile name="legal.md" />
+      <FileTreeFile name="index.mdx" />
+    </FileTreeFolder>
+  </FileTreeFolder>
+</FileTree>
 
 > "We recommend having at least a couple hundred examples. In general, we've found that each doubling of the dataset size leads to a linear increase in model quality" – [OpenAI Fine-Tuning documentation](https://beta.openai.com/docs/guides/fine-tuning/prepare-training-data)
 >> "test 34344 "
@@ -27,7 +45,7 @@ See [upgrade guide](#upgrade-guide) below if you are migrating from v0 version o
 
 You can easily modify the theme color by changing the primary attribute in the tailwind config file:
 
-```jsx
+```js  showLineNumbers
 enum LogLevel {
   ERROR,
   WARN,
@@ -163,7 +181,7 @@ The `DEFAULT_LAYOUT` for blog posts page is set to `PostLayout`.
 
 `layout` is mapped to wrapper which wraps the entire MDX content.
 
-```jsx
+```js
 export const MDXComponents = {
   Image,
   a: CustomLink,
@@ -317,10 +335,13 @@ sum = parseInt(num1) + parseInt(num2) // "+" means "add"
 alert('Sum = ' + sum) // "+" means combine into a string
 ```
 ````
-
+ 
 will appear as:
 
-```js:test.js {1,3-4} showLineNumbers 
+ 
+
+
+```js:test.js  {1,3-4} showLineNumbers 
 var num1, num2, sum
 num1 = prompt('Enter first number')
 num2 = prompt('Enter second number')
@@ -373,11 +394,7 @@ For more information on the required variables, check out `.env.sample.`
 Two components are exported, a default `NewsletterForm` and a `BlogNewsletterForm` component, which is also passed in as an MDX component
 and can be used in a blog post:
 
-```jsx
-<BlogNewsletterForm title="Like what you are reading?" />
-```
-
-<BlogNewsletterForm title="Like what you are reading?" />
+ 
 
 The component relies on nextjs's [API routes](https://nextjs.org/docs/api-routes/introduction) which requires a server-side instance of nextjs to be setup
 and is not compatible with a 100% static site export. Users should either self-host or use a compatible platform like Vercel or Netlify which supports this functionality.

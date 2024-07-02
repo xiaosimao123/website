@@ -1,3 +1,4 @@
+ 
 import TOCInline from 'pliny/ui/TOCInline'
 // import Pre from 'pliny/ui/Pre'
 import BlogNewsletterForm from 'pliny/ui/BlogNewsletterForm'
@@ -19,8 +20,16 @@ import StepHikeCompact from '../common/StepHikeCompact'
 import  RefSubLayout   from '../layouts/ref/RefSubLayout'
 import CustomPre from '../CustomPre'
 import { Button } from '../Button'
-import Code from '../common/Code/Code'
  
+import { FileTree,FileTreeFolder,FileTreeFile } from '../file-tree'
+import { Code } from '../Code'
+import { Grid } from '../common/Grid'
+import { Aside } from '../common/Aside'
+import pre from '../pre'
+import React from 'react'
+import { getHighlighter } from 'shiki'
+import { transformerNotationDiff } from '@shikijs/transformers'
+import CodeBlock from './test'
  
 const CustomCodeBlock = ({
   children,
@@ -42,9 +51,14 @@ const CustomCodeBlock = ({
     </div>
   );
 };
- 
+
+
  
 export const components: MDXComponents = {
+  // Global components
+  Grid,
+  Aside,
+
   RefSubLayout,
   Button,
   Image,
@@ -54,7 +68,6 @@ export const components: MDXComponents = {
   ChevronLink,
   // pre: CustomCodeBlock,
   pre: CustomPre,
-  // pre:Code,
   Callout,
   table: TableWrapper,
   BlogNewsletterForm,
@@ -63,6 +76,10 @@ export const components: MDXComponents = {
   h2: H2,
   h3: H3,
   h4: H4,
+  // Code,
+  FileTree,
+  FileTreeFolder,
+  FileTreeFile,
   // a: Link,
   OptionsTable,
   OptionTitle,

@@ -1,0 +1,17 @@
+div[data-rehype-pretty-code-fragment] {
+    overflow: hidden;
+   
+    /* stylist preferences */
+    background-color: rgb(255 255 255 / 0.1);
+    border-radius: 0.5rem;
+  }
+   
+  div[data-rehype-pretty-code-fragment] pre {
+    overflow-x: auto;
+   
+    /* stylist preferences */
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+  }

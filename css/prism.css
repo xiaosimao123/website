@@ -4,7 +4,7 @@
 }
 
 .code-line {
-  @apply -ml-4 block border-l-4 border-transparent pl-4 pr-4 min-w-full ;
+  @apply -ml-0 block border-l-4 border-transparent pl-4 pr-4 min-w-full ;
 }
 
 .code-line.inserted {
@@ -16,17 +16,19 @@
 }
 
 .highlight-line {
-  @apply -ml-4 border-l-4 border-primary-500 bg-gray-300 bg-opacity-50 dark:bg-gray-600;
+  @apply -ml-2 border-l-[10px] border-primary-500 bg-gray-300 bg-opacity-50 dark:bg-gray-600;
 }
 
 .line-number::before {
-  @apply -ml-2 mr-4 inline-block w-4 text-right text-gray-400;
+  @apply -ml-0 mr-4 inline-block w-4 text-right text-gray-400;
   content: attr(line);
-}
+}    
 
 /* .pre::before {
   @apply absolute left-0 top-0 float-left h-10 w-full rounded-t-lg;
   @apply  px-20 py-0 indent-4 text-base font-bold leading-10 bg-current-600 ;
 
  
-} */
+}
+*/
+ 

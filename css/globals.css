@@ -211,6 +211,28 @@
     @apply rounded-t bg-gray-400 px-5 py-3 font-mono text-red-400 text-sm font-bold  dark:text-gray-300  dark:bg-gray-300;
  
   } */
-
-  }
+}
   
+
+@layer components {
+  .valkyrie {
+    box-shadow: 1px 1px 1px hsl(24deg 16% 0% / 0.03),
+      10px 10px 17px -1px hsl(24deg 16% 0% / 0.03),
+      50px 50px 80px -3px hsl(24deg 16% 0% / 0.03);
+    border: 1px solid transparent;
+    background: linear-gradient(
+          160deg,
+          theme(colors.gray.900 / 80%) 20%,
+          theme(colors.gray.900 / 90%) 60%
+        )
+        padding-box,
+      radial-gradient(
+          at left top,
+          theme(colors.rose.200 / 25%),
+          20%,
+          theme(colors.rose.200 / 7%) 50%
+        )
+        border-box;
+  }
+}
+ 
