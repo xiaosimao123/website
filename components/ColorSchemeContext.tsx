@@ -35,6 +35,7 @@ export const ColorSchemeProvider: FC<React.PropsWithChildren<{}>> = ({ children 
       if (newColorScheme === 'system') {
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
           document.documentElement.classList.add('dark')
+ 
         } else {
           document.documentElement.classList.remove('dark')
         }

@@ -27,9 +27,10 @@
  * --syntax-gutter-background-color-selected: hsl(230, 1%, 90%);
  * --syntax-cursor-line: hsla(230, 8%, 24%, 0.05);
  */
-
+ 
  code[class*="language-"],
  pre[class*="language-"] {
+
      background: hsl(230, 1%, 98%);
      color: hsl(230, 8%, 24%);
      font-family:    Menlo , var(--font-geist-mono) , "Fira Code", "Fira Mono" , Consolas, "DejaVu Sans Mono", monospace;
@@ -47,7 +48,27 @@
      -moz-hyphens: none;
      -ms-hyphens: none;
      hyphens: none;
- }
+
+
+         /* @media (prefers-color-scheme: dark) {
+        background: hsl(220, 13%, 18%);
+        color: hsl(220, 14%, 71%);
+ font-family:    Menlo , var(--font-geist-mono) , "Fira Code", "Fira Mono" , Consolas, "DejaVu Sans Mono", monospace;
+        direction: ltr;
+        text-align: left;
+        white-space: pre;
+        word-spacing: normal;
+        word-break: normal;
+        line-height: 1.5;
+        -moz-tab-size: 2;
+        -o-tab-size: 2;
+        tab-size: 2;
+        -webkit-hyphens: none;
+        -moz-hyphens: none;
+        -ms-hyphens: none;
+        hyphens: none;
+    }*/
+ } 
  
  /* Selection */
  code[class*="language-"]::-moz-selection,
@@ -89,6 +110,9 @@
  .token.punctuation,
  .token.entity {
      color: hsl(230, 8%, 24%);
+     @media (prefers-color-scheme: dark) {
+        color: hsl(220, 14%, 71%);
+     }
  }
  
  .token.attr-name,

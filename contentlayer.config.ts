@@ -342,14 +342,14 @@ export default makeSource({
     ],
     rehypePlugins: [
       rehypeSlug,
-      [
-        rehypeAutolinkHeadings,
-        {
-          properties: {
-            className: ['anchor']
-          }
-        }
-      ],
+      // [
+      //   rehypeAutolinkHeadings,
+      //   {
+      //     properties: {
+      //       className: ['anchor']
+      //     }
+      //   }
+      // ],
       // rehypeAutolinkHeadings,
       rehypeKatex,
       [rehypeCitation, { path: path.join(root, 'data') }],
@@ -371,11 +371,7 @@ export default makeSource({
       // [
       //   rehypePrettyCode,
       //   {
-      //     theme: 'one-dark-pro',
-      //     // theme: {
-      //     //   dark: 'one-dark-pro',
-      //     //   light: 'github-light',
-      //     // },
+ 
       //     tokensMap: {
       //       // VScode command palette: Inspect Editor Tokens and Scopes
       //       // https://github.com/Binaryify/OneDark-Pro/blob/47c66a2f2d3e5c85490e1aaad96f5fab3293b091/themes/OneDark-Pro.json

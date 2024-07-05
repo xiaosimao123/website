@@ -1,3 +1,13 @@
+/* Code title styles */
+.remark-code-title {
+  @apply  text-sm  rounded-t-lg bg-gray-100 text-red-400  dark:bg-gray-700 px-5 py-3   dark:text-gray-200;
+}
+
+.remark-code-title + div > pre {
+  @apply mt-0 rounded-t-none;
+}
+
+
 /* Code block styles */
 .code-highlight {
   @apply float-left min-w-full;

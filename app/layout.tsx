@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 // import { Inter } from "next/font/google";
+import 'css/prism-one-dark.css'
+import 'css/prism-one-light.css'
 
-import '@/css/prism-one-light.css'
-import '@/css/prism-one-dark.css'
 import 'css/prism.css'
 // import '@/css/vs.css'
 // import '@/css/vs_dark.css'
@@ -92,7 +92,9 @@ export default function RootLayout({
       className={`${GeistSans.variable} ${GeistMono.variable} scroll-smooth scroll-padding`}
       suppressHydrationWarning
     >
+
       <head>
+      <meta name="color-scheme" content="light dark" />
       <script
             dangerouslySetInnerHTML={{
               __html: /* js */ `
@@ -105,7 +107,8 @@ export default function RootLayout({
                 }
           `,
             }}
-          />
+            ></script>
+      
       </head>
       <body className="bg-white text-black antialiased dark:bg-gray-950 dark:text-white">
       <NoSSR> 

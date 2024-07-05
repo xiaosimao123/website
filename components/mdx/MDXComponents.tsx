@@ -29,7 +29,7 @@ import pre from '../pre'
 import React from 'react'
 import { getHighlighter } from 'shiki'
 import { transformerNotationDiff } from '@shikijs/transformers'
-import CodeBlock from './test'
+import CodeBlock, { CodeHighlight } from './test'
  
 const CustomCodeBlock = ({
   children,
