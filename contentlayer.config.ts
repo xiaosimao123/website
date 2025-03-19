@@ -2,10 +2,14 @@ import { defineDocumentType, ComputedFields, makeSource } from 'contentlayer/sou
 import { writeFileSync } from 'fs'
 import readingTime from 'reading-time'
 import path from 'path'
-import {slug} from 'github-slugger'
-import { MDXDocumentDate, allCoreContent, sortPosts } from 'pliny/utils/contentlayer.js'
+import { slug } from 'github-slugger'
+import {
+  MDXDocumentDate,
+  allCoreContent,
+  sortPosts,
+} from 'pliny/utils/contentlayer.js'
 import siteMetadata from './data/siteMetadata.js'
- 
+import rehypeMetaAttribute from 'utils/rehype-meta-attribute.mjs'
 // Remark packages
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
@@ -24,7 +28,7 @@ import rehypeKatex from 'rehype-katex'
 import rehypeCitation from 'rehype-citation'
 import rehypePrismPlus from 'rehype-prism-plus'
 import rehypePresetMinify from 'rehype-preset-minify'
-
+import remarkParse from 'remark-parse'
 import type * as unified from 'unified'
 import { toMarkdown } from 'mdast-util-to-markdown'
 import { mdxToMarkdown } from 'mdast-util-mdx'
@@ -34,11 +38,14 @@ import { bundleMDX } from 'mdx-bundler'
 import type { DocumentGen } from 'contentlayer/core'
 import * as fs from 'node:fs/promises'
 import rehypePrettyCode from 'rehype-pretty-code'
- 
+
 import rehypeShiki from '@shikijs/rehype'
 import { prettyCode } from 'utils/rehyePrettyCode.js'
 import { RehypeElement } from 'utils/types.js'
 export const contentDirPath = 'content'
+import rehypeMdxCodeProps from 'rehype-mdx-code-props'
+
+import rehypeMetaAsAttributes from '@lekoarts/rehype-meta-as-attributes'
 
 export const urlFromFilePath = (doc: DocumentGen): string => {
   let urlPath = doc._raw.flattenedPath.replace(/^pages\/?/, '/')
@@ -47,13 +54,15 @@ export const urlFromFilePath = (doc: DocumentGen): string => {
   // Remove preceding indexes from path segments
   urlPath = urlPath
     .split('/')
-    .map((segment) => segment.replace(/^\d\d\d\-/, ''))
+    .map((segment: string) => segment.replace(/^\d\d\d\-/, ''))
     .join('/')
   return urlPath
 }
 
 export const getLastEditedDate = async (doc: DocumentGen): Promise<Date> => {
-  const stats = await fs.stat(path.join(contentDirPath, doc._raw.sourceFilePath))
+  const stats = await fs.stat(
+    path.join(contentDirPath, doc._raw.sourceFilePath)
+  )
   return stats.mtime
 }
 
@@ -65,9 +74,14 @@ const tocPlugin =
   (headings: DocHeading[]): unified.Plugin =>
   () => {
     return (node: any) => {
-      for (const element of node.children.filter((_: any) => _.type === 'heading' || _.name === 'OptionsTable')) {
+      for (const element of node.children.filter(
+        (_: any) => _.type === 'heading' || _.name === 'OptionsTable'
+      )) {
         if (element.type === 'heading') {
-          const title = toMarkdown({ type: 'paragraph', children: element.children }, { extensions: [mdxToMarkdown()] })
+          const title = toMarkdown(
+            { type: 'paragraph', children: element.children },
+            { extensions: [mdxToMarkdown()] }
+          )
             .trim()
             .replace(/<.*$/g, '')
             .replace(/\\/g, '')
@@ -82,7 +96,7 @@ const tocPlugin =
                 .forEach((heading: any) => {
                   const title = toMarkdown(
                     { type: 'paragraph', children: heading.children },
-                    { extensions: [mdxToMarkdown()] },
+                    { extensions: [mdxToMarkdown()] }
                   )
                     .trim()
                     .replace(/<.*$/g, '')
@@ -119,7 +133,10 @@ const computedFields: ComputedFields = {
       await bundleMDX({
         source: doc.body.raw,
         mdxOptions: (opts) => {
-          opts.remarkPlugins = [...(opts.remarkPlugins ?? []), tocPlugin(headings)]
+          opts.remarkPlugins = [
+            ...(opts.remarkPlugins ?? []),
+            tocPlugin(headings),
+          ]
           return opts
         },
       })
@@ -149,7 +166,7 @@ function createTagCount(allBlogs: any[]) {
   writeFileSync('./app/tag-data.json', JSON.stringify(tagCount))
 }
 
-function createSearchIndex(allBlogs: MDXDocumentDate[] ) {
+function createSearchIndex(allBlogs: MDXDocumentDate[]) {
   if (
     siteMetadata?.search?.provider === 'kbar' &&
     siteMetadata.search.kbarConfig.searchDocumentsPath
@@ -218,7 +235,8 @@ export const Doc = defineDocumentType(() => ({
   fields: {
     global_id: {
       type: 'string',
-      description: 'Random ID to uniquely identify this doc, even after it moves',
+      description:
+        'Random ID to uniquely identify this doc, even after it moves',
       required: true,
     },
     title: {
@@ -267,7 +285,8 @@ export const Doc = defineDocumentType(() => ({
       type: 'string',
       description:
         'The URL path of this page relative to site root. For example, the site root page would be "/", and doc page would be "docs/getting-started/"',
-      resolve: (doc) => urlFromFilePath(doc).replace(new RegExp(`-${doc.global_id}$`), ''),
+      resolve: (doc) =>
+        urlFromFilePath(doc).replace(new RegExp(`-${doc.global_id}$`), ''),
     },
     pathSegments: {
       type: 'json',
@@ -291,7 +310,10 @@ export const Doc = defineDocumentType(() => ({
         await bundleMDX({
           source: doc.body.raw,
           mdxOptions: (opts) => {
-            opts.remarkPlugins = [...(opts.remarkPlugins ?? []), tocPlugin(headings)]
+            opts.remarkPlugins = [
+              ...(opts.remarkPlugins ?? []),
+              tocPlugin(headings),
+            ]
             return opts
           },
         })
@@ -303,7 +325,6 @@ export const Doc = defineDocumentType(() => ({
   },
   extensions: {},
 }))
-
 
 export const Authors = defineDocumentType(() => ({
   name: 'Authors',
@@ -324,24 +345,27 @@ export const Authors = defineDocumentType(() => ({
 }))
 export default makeSource({
   contentDirPath: 'content',
-  documentTypes: [Blog,Authors,Doc],
+  documentTypes: [Blog, Authors, Doc],
   mdx: {
     cwd: process.cwd(),
     remarkPlugins: [
       remarkExtractFrontmatter,
       remarkGfm,
-    //   [remarkShikiTwoslash, {
-    //     themes: ['dark-plus', 'light-plus'],
-    //     alwayRaiseForTwoslashExceptions: true,
-    //     // https://github.com/shikijs/twoslash/issues/131
-    //     disableImplicitReactImport: true,
-    // }],
+      //   [remarkShikiTwoslash, {
+      //     themes: ['dark-plus', 'light-plus'],
+      //     alwayRaiseForTwoslashExceptions: true,
+      //     // https://github.com/shikijs/twoslash/issues/131
+      //     disableImplicitReactImport: true,
+      // }],
       remarkCodeTitles,
       remarkMath,
       remarkImgToJsx,
     ],
     rehypePlugins: [
       rehypeSlug,
+      // rehypeMetaAttribute,
+      //rehypeMdxCodeProps,
+      rehypeMetaAsAttributes,
       // [
       //   rehypeAutolinkHeadings,
       //   {
@@ -371,7 +395,7 @@ export default makeSource({
       // [
       //   rehypePrettyCode,
       //   {
- 
+
       //     tokensMap: {
       //       // VScode command palette: Inspect Editor Tokens and Scopes
       //       // https://github.com/Binaryify/OneDark-Pro/blob/47c66a2f2d3e5c85490e1aaad96f5fab3293b091/themes/OneDark-Pro.json
@@ -409,4 +433,4 @@ export default makeSource({
     createTagCount(allBlogs)
     createSearchIndex(allBlogs)
   },
-});
+})

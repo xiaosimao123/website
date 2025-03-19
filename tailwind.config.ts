@@ -35,9 +35,12 @@ const config: Config = {
       },
       animation: {
         slideUpAndFade: 'slideUpAndFade 300ms cubic-bezier(0.16, 0, 0.13, 1)',
-        slideDownAndFade: 'slideDownAndFade 300ms cubic-bezier(0.16, 0, 0.13, 1)',
-        slideRightAndFade: 'slideRightAndFade 300ms cubic-bezier(0.16, 0, 0.13, 1)',
-        slideLeftAndFade: 'slideLeftAndFade 300ms cubic-bezier(0.16, 0, 0.13, 1)',
+        slideDownAndFade:
+          'slideDownAndFade 300ms cubic-bezier(0.16, 0, 0.13, 1)',
+        slideRightAndFade:
+          'slideRightAndFade 300ms cubic-bezier(0.16, 0, 0.13, 1)',
+        slideLeftAndFade:
+          'slideLeftAndFade 300ms cubic-bezier(0.16, 0, 0.13, 1)',
       },
       screens: {
         '1.5xl': '1440px',
@@ -57,7 +60,6 @@ const config: Config = {
         current: colors.violet,
         primary: colors.violet,
         gray: colors.gray,
- 
       },
       typography: ({ theme }) => ({
         DEFAULT: {
@@ -65,15 +67,12 @@ const config: Config = {
             pre: {
               // fontFamily: {
               //   // sans: ['var(--font-space-grotesk)', ...fontFamily.sans],
-             
               //   mono: ['var(--font-geist-mono)'],
               // },
               // fontWeight: 600,
-
               // fontFamily:var(--font-geist-sans),
               // marginTop: 0,
               // marginBottom: 0,
-     
             },
             a: {
               color: theme('colors.primary.500'),
@@ -95,8 +94,6 @@ const config: Config = {
               borderColor: theme('colors.primary.300'),
               backgroundColor: theme('colors.primary.100'),
             },
- 
-  
           },
         },
         // invert: {
@@ -125,11 +122,10 @@ const config: Config = {
   },
   plugins: [
     plugin(function ({ addBase, theme }) {
-      addBase({
-
-      })
+      addBase({})
     }),
-    require('@tailwindcss/forms'), 
-    require('@tailwindcss/typography')],
-};
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/typography'),
+  ],
+}
 export default config;

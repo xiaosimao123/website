@@ -46,30 +46,30 @@ const removeDuplicateNewLine = (text: string): string => {
 type Props = React.ComponentPropsWithoutRef<'pre'>;
 
 function CustomPre({ children, className, ...props }: Props) {
-  const preRef = useRef<HTMLPreElement>(null);
- 
+  // console.log(JSON.stringify(children, null, 4))
+  const preRef = useRef<HTMLPreElement>(null)
 
-  const [copied, setCopied] = useState(false);
+  const [copied, setCopied] = useState(false)
 
   useEffect(() => {
-    const timer = setTimeout(() => setCopied(false), 2000);
+    const timer = setTimeout(() => setCopied(false), 2000)
 
-    return () => clearTimeout(timer);
-  }, [copied]);
+    return () => clearTimeout(timer)
+  }, [copied])
 
   const onClick = async () => {
     if (preRef.current?.innerText) {
-      await copyToClipboard(removeDuplicateNewLine(preRef.current.innerText));
-      setCopied(true);
+      await copyToClipboard(removeDuplicateNewLine(preRef.current.innerText))
+      setCopied(true)
     }
-  };
+  }
 
   return (
     <div className="group relative pre">
       <pre
         {...props}
         ref={preRef}
-        className={clsx(className, 'focus:outline-none','pre')}
+        className={clsx(className, 'focus:outline-none', 'pre')}
       >
         <div className="absolute top-0 right-0 m-4 flex items-center rounded-md ">
           <span
@@ -77,7 +77,7 @@ function CustomPre({ children, className, ...props }: Props) {
               'group-hover:flex': copied,
             })}
           >
-            { 'copied' }
+            {'copied'}
           </span>
 
           <button
@@ -89,8 +89,7 @@ function CustomPre({ children, className, ...props }: Props) {
               'hidden rounded-md border bg-transparent p-2 transition ease-in focus:outline-none group-hover:flex',
               {
                 'border-purple-400': copied,
-                ' focus:ring-4 ':
-                  !copied,
+                ' focus:ring-4 ': !copied,
               }
             )}
           >
@@ -116,22 +115,17 @@ function CustomPre({ children, className, ...props }: Props) {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth={0.8}
- 
                 d="M11.4669 3.72684C11.7558 3.91574 11.8369 4.30308 11.648 4.59198L7.39799 11.092C7.29783 11.2452 7.13556 11.3467 6.95402 11.3699C6.77247 11.3931 6.58989 11.3355 6.45446 11.2124L3.70446 8.71241C3.44905 8.48022 3.43023 8.08494 3.66242 7.82953C3.89461 7.57412 4.28989 7.55529 4.5453 7.78749L6.75292 9.79441L10.6018 3.90792C10.7907 3.61902 11.178 3.53795 11.4669 3.72684Z"
                 className={clsx({ block: copied, hidden: !copied })}
               />
             </svg>
           </button>
-
- 
         </div>
 
         {children}
       </pre>
     </div>
-
- 
-  );
+  )
 }
 
 export default CustomPre;

@@ -29,8 +29,39 @@ import pre from '../pre'
 import React from 'react'
 import { getHighlighter } from 'shiki'
 import { transformerNotationDiff } from '@shikijs/transformers'
-import CodeBlock, { CodeHighlight } from './test'
- 
+import * as CodeBlock from '../CodeBlock'
+import {
+  Box,
+  Flex,
+  Em,
+  Heading,
+  Kbd,
+  Separator,
+  Strong,
+  Tabs,
+  Text,
+} from '@radix-ui/themes'
+
+const isReactElementWithChildren = (
+  element?: unknown
+): element is React.ReactElement<{ children: React.ReactNode }> =>
+  React.isValidElement(element) && !!(element.props as any).children
+
+export const childrenText = (children?: unknown): string | null => {
+  if (isReactElementWithChildren(children)) {
+    return childrenText(children.props?.children)
+  }
+
+  if (Array.isArray(children)) {
+    return children.map(childrenText).flat().filter(Boolean).join('')
+  }
+
+  if (typeof children === 'string') {
+    return children
+  }
+
+  return null
+}
 const CustomCodeBlock = ({
   children,
   className,
@@ -42,23 +73,32 @@ const CustomCodeBlock = ({
       {/* <div className="flex justify-end py-1 pr-3 bg-zinc-600 text-gray-300 rounded-t-lg">
         <CopyButton>{children}</CopyButton>
       </div> */}
-      <pre
-        className= "overflow-x-auto bg-gray-700 py-4 rounded-b-lg" 
-        {...props}
-      >
+      <pre className="overflow-x-auto bg-gray-700 py-4 rounded-b-lg" {...props}>
         <code>{children}</code>
       </pre>
     </div>
-  );
-};
-
-
- 
+  )
+}
+type Props = React.ComponentPropsWithoutRef<'pre'>
 export const components: MDXComponents = {
   // Global components
+  Tabs,
+  Box,
+  Flex,
+  Text,
+
   Grid,
   Aside,
 
+  CodeBlock,
+  // CodeBlockRoot,
+  // CodeBlockCode,
+  // CodeBlockPre,
+  // CodeBlockContent,
+  // CodeBlock: () => {
+  //   return CodeBlock
+  // },
+  // Tabs,
   RefSubLayout,
   Button,
   Image,
@@ -67,7 +107,47 @@ export const components: MDXComponents = {
   Card,
   ChevronLink,
   // pre: CustomCodeBlock,
-  pre: CustomPre,
+  //pre: CustomPre,
+  pre: ({ children }) => {
+    console.log(children?.props.live ?? 'live')
+    return (
+      // <>
+      //   {children?.props.live && (
+      //     <CodeBlock.LivePreview
+      //       code={childrenText(children) ?? ''}
+      //       scroll={children.props.scroll}
+      //     />
+      //   )}
+
+      //   <CustomPre>{children}</CustomPre>
+      // </>
+      <div>
+        {children.props.live && (
+          <CodeBlock.LivePreview
+            code={childrenText(children) ?? ''}
+            scroll={children.props.scroll}
+          />
+        )}
+
+        <CustomPre>{children}</CustomPre>
+      </div>
+    )
+  },
+  // pre: ({ children, live }: any) => (
+  //   console.log("3243")
+  //   return (<div>
+  //     <CodeBlock.LivePreview
+  //       code={childrenText(children) ?? ''}
+  //       scroll={children.props.scroll}
+  //     />
+
+  //     {/* <CodeBlock.Content>
+  //       <CodeBlock.Pre>{children}</CodeBlock.Pre>
+  //       <CodeBlock.CopyButton />
+  //     </CodeBlock.Content> */}
+  //     <CustomPre>{children}</CustomPre>
+  //   </div>)
+  // ),
   Callout,
   table: TableWrapper,
   BlogNewsletterForm,
